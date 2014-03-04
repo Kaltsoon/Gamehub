@@ -37,6 +37,7 @@ group :doc do
 end
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'rspec-rails', '~> 2.14.1'
 end
 
@@ -47,6 +48,11 @@ group :test do
   gem 'capybara'
   gem 'launchy'
   gem 'simplecov', require: false
+end
+
+group :production do
+   gem 'pg'
+   gem 'rails_12factor' 
 end
 
 # Use ActiveModel has_secure_password
