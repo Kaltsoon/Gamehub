@@ -1,0 +1,18 @@
+<ul class="media-list">
+  <% games.each do |game| %>
+  <li class="media">
+    <a class="pull-left" href="#">
+      <%= image_tag game.avatar.url(:thumb), class: "media-object img-rounded" %>
+    </a>
+    <div class="media-body">
+      <h4><label class="label label-info"><%= game.average_score %></label> <%= link_to game.name, game_path(game) %></h4>
+	    <p>
+	    	<%= game.synopsis %>
+	    </p>
+	   	<% game.genres.each do |genre| %>
+	  		<span class="label label-primary"><%= genre %></span>
+	  	<% end %>
+    </div>
+  </li>
+  <% end %>
+</ul>

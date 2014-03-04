@@ -1,0 +1,52 @@
+<% if not notice.nil? %>
+	<div class="alert alert-info"><%= notice %></div>
+<% end %>
+<div class="page-header">
+  <h1>
+  	<span class="label label-info"><%= @game.average_score %></span>
+  	<%= @game.name %> <small>game</small>
+  </h1>
+</div>
+</p>
+	<%= link_to raw("<i class='fa fa-pencil'></i> Edit"), edit_game_path(@game), class: "btn btn-primary" if is_user_allowed_to?("edit_game") %>
+	<%= link_to raw("<i class='fa fa-times'></i> Remove"), game_path(@game),class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } if is_user_allowed_to?("remove_game") %>
+<p>
+<div class="row">
+	<div class="col-md-4">
+		<%= image_tag @game.avatar.url(:medium), class: "img-rounded img-responsive" %>
+	</div>
+	<div class="col-md-5">
+		<blockquote>
+			<%= @game.description %>
+		</blockquote>
+	</div>
+	<div class="col-md-3">
+		<div class="well well-sm">
+			<ul class="list-unstyled" style="margin-bottom: 0px">
+				<li>
+					<strong>Release date:</strong> <%= @game.published.to_formatted_s(:long) %>
+				</li>
+				<li>
+					<strong>Genres:</strong>
+					<% @game.genres.each do |genre| %>
+						<span class="label label-primary"><%= genre.name %></span>
+					<% end %>
+				</li> 
+			</ul>
+		</div>
+	</div>
+</div>
+<h3>
+	<i class="fa fa-comments"></i> <%= pluralize(@game.reviews.count, "review") %>
+</h3>
+<p>
+	<a href="#give_a_review" class="btn btn-primary"><i class="fa fa-pencil"></i> Give a review for this game</a>
+</p>
+<%= render "reviews", reviews: @game.reviews.order("created_at DESC") %>
+<a name="give_a_review"></a>
+<h3>Give a review for this game</h3>
+<% if(!current_user.nil? and !@game.users.include?(current_user)) %>
+	<%= render "review_form", game: @game %>
+<% end %>
+<%= link_to "Sign in to review this game", signin_path if current_user.nil? %>
+<%= "You've already written a review for #{@game}!" if @game.users.include?(current_user) %>

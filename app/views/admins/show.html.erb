@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @admin.user_id %>
+</p>
+
+<p>
+  <strong>Add game:</strong>
+  <%= @admin.add_game %>
+</p>
+
+<p>
+  <strong>Remove game:</strong>
+  <%= @admin.remove_game %>
+</p>
+
+<p>
+  <strong>Edit game:</strong>
+  <%= @admin.edit_game %>
+</p>
+
+<p>
+  <strong>Add genre:</strong>
+  <%= @admin.add_genre %>
+</p>
+
+<p>
+  <strong>Remove genre:</strong>
+  <%= @admin.remove_genre %>
+</p>
+
+<p>
+  <strong>Edit genre:</strong>
+  <%= @admin.edit_genre %>
+</p>
+
+<p>
+  <strong>Give rights:</strong>
+  <%= @admin.give_rights %>
+</p>
+
+<%= link_to 'Edit', edit_admin_path(@admin) %> |
+<%= link_to 'Back', admins_path %>

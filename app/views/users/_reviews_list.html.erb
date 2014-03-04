@@ -1,0 +1,13 @@
+<ul class="media-list">
+  <% reviews.each do |review| %>
+  <li class="media">
+    <div class="media-body">
+      <h4><label class="label label-info"><%= review.score %></label> <%= link_to review.game, game_path(review.game) %> <small><%= review.created_at.to_formatted_s(:long) %></small></h4>
+	    <p>
+	    	<%= review.content %>
+	    </p>
+      <%= link_to raw("<i class='fa fa-times'></i> Remove "), review_path(review),  method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" if is_current_user?(user) %> 
+    </div>
+  </li>
+  <% end %>
+</ul>

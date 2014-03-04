@@ -1,0 +1,43 @@
+<% if not notice.nil? %>
+  <div class="alert alert-info">
+    <%= notice %>
+  </div>
+<% end %>
+<div class="page-header">
+  <h1>Games</h1>
+</div>
+<%= link_to raw("<i class='fa fa-plus'></i> New Game") , new_game_path, class: "btn btn-success" if is_user_allowed_to?("add_game") %>
+<div class="row">
+  <div class="col-md-4">
+    <h3>The latest</h3>
+    <%= render "list", games: @latest_games %>
+  </div>
+  <div class="col-md-4">
+    <h3>The most popular</h3>
+    <%= render "list", games: @popular_games %>
+  </div>
+  <div class="col-md-4">
+    <h3>The best</h3>
+    <%= render "list", games: @best_games %>
+  </div>
+</div>
+<h3>All <small><%= pluralize(@games.count,"game") %></small></h3>
+<table ng-app ng-controller="GamesController" class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th><a ng-click="click('name')"><i class="fa fa-sort"></i> Name</a></th>
+      <th><a ng-click="click('published')"><i class="fa fa-sort"></i> Release date</th>
+      <th><a ng-click="click('average_score')"><i class="fa fa-sort"></i> Score</a></th>
+      <th><a ng-click="click('reviews')"><i class="fa fa-sort"></i> Number of reviews</a></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr ng-repeat="game in games | orderBy:order">
+      <td><a href="games/{{game.id}}">{{game.name}}</a></td>
+      <td>{{game.published | date:'MMMM d, y'}}</td>
+      <td><span class="label label-info">{{game.average_score}}</span></td>
+      <td><span class="badge">{{game.reviews.length}}</span></td>
+    </tr>
+  </tbody>
+</table>

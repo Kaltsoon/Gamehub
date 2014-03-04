@@ -1,0 +1,29 @@
+<%= form_for(@review) do |f| %>
+  <% if @review.errors.any? %>
+    <div class="alert alert-danger">
+      <strong><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</strong>
+
+      <ul>
+      <% @review.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= hidden_field_tag "review[user_id]", current_user.id %>
+  <div class="form-group">
+    <%= label_tag "Game" %><br/>
+    <%= select_tag "review[game_id]", options_from_collection_for_select(@games, "id", "to_s") %>
+  </div>
+  <div class="form-group">
+    <%= label_tag "Score (0-100)" %>
+    <%= f.number_field :score, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= label_tag "Review" %><br/>
+    <%= f.text_area :content, class: "form-control" %>
+  </div>
+  <div class="actions">
+    <%= f.submit class: "btn btn-info" %>
+  </div>
+<% end %>

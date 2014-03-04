@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+
+<div class="page-header">
+  <h1>
+  	<%= @genre.name %> <small>genre</small>
+  </h1>
+</div>
+<%= link_to raw("<i class='fa fa-pencil'></i> Edit"), edit_genre_path(@genre), class: "btn btn-primary" if is_user_allowed_to?("edit_genre") %>
+<%= link_to raw("<i class='fa fa-times'></i> Remove"), genre_path(@genre),class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } if is_user_allowed_to?("remove_genre") %>
+<h3>Games in this genre</h3>
+<%= render "list", games: @genre.games %>

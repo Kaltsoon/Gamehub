@@ -1,0 +1,29 @@
+<h1>Listing genre_games</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Game</th>
+      <th>Genre</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @genre_games.each do |genre_game| %>
+      <tr>
+        <td><%= genre_game.game_id %></td>
+        <td><%= genre_game.genre_id %></td>
+        <td><%= link_to 'Show', genre_game %></td>
+        <td><%= link_to 'Edit', edit_genre_game_path(genre_game) %></td>
+        <td><%= link_to 'Destroy', genre_game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Genre game', new_genre_game_path %>

@@ -1,0 +1,21 @@
+<%= form_for(@genre) do |f| %>
+  <% if @genre.errors.any? %>
+    <div class="alert alert-danger">
+      <strong><%= pluralize(@genre.errors.count, "error") %> prohibited this genre from being saved:</strong>
+
+      <ul>
+      <% @genre.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="actions">
+    <%= f.submit class: "btn btn-info" %>
+  </div>
+<% end %>

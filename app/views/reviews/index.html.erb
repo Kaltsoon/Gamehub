@@ -1,0 +1,38 @@
+<div class="page-header">
+  <h1>Reviews</h1>
+</div>
+<%= link_to raw("<i class='fa fa-plus'></i> New Review"), new_review_path, class: "btn btn-success" unless current_user.nil? %>
+<div class="row">
+  <div class="col-md-4">
+    <h3>The latest</h3>
+    <%= render "list", reviews: @latest_reviews %>
+  </div>
+  <div class="col-md-4">
+    <h3>The highest score</h3>
+    <%= render "list", reviews: @highest_score_reviews %>
+  </div>
+  <div class="col-md-4">
+    <h3>The lowest score</h3>
+    <%= render "list", reviews: @lowest_score_reviews %>
+  </div>
+</div>
+<h3>All <small><%= pluralize(@reviews.count,"review") %></small></h3>
+<table ng-app ng-controller="ReviewsController" class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th><a ng-click="click('game.name')"><i class="fa fa-sort"></i> Game</a></th>
+      <th><a ng-click="click('user.username')"><i class="fa fa-sort"></i> User</a></th>
+      <th><a ng-click="click('created_at')"><i class="fa fa-sort"></i> Date</a></th>
+      <th><a ng-click="click('score')"><i class="fa fa-sort"></i> Score</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr ng-repeat="review in reviews | orderBy:order">
+        <td><a href="games/{{review.game.id}}">{{review.game.name}}</a></td>
+        <td><a href="users/{{review.user.id}}">{{review.user.username}}</a></td>
+        <td>{{review.created_at | date:'MMMM d, y'}}</td>
+        <td><span class="label label-info">{{review.score}}</span></td>
+      </tr>
+  </tbody>
+</table>

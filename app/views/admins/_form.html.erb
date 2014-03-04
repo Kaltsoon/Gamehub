@@ -1,0 +1,33 @@
+<%= form_for(@admin) do |f| %>
+  <% if @admin.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@admin.errors.count, "error") %> prohibited this admin from being saved:</h2>
+
+      <ul>
+      <% @admin.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :user_id %><br>
+    <%= select_tag "admin[user_id]", options_from_collection_for_select(@users, "id", "to_s") %>
+  </div>
+  <div class="form-group">
+    <%= f.label "Rights" %>
+    <ul class="list-unstyled">
+      <li><%= f.check_box :add_game %> Add game</li>
+      <li><%= f.check_box :remove_game %> Remove game</li>
+      <li><%= f.check_box :edit_game %> Edit game</li>
+      <li><%= f.check_box :add_genre %> Add genre</li>
+      <li><%= f.check_box :remove_genre %> Remove genre</li>
+      <li><%= f.check_box :edit_genre %> Edit genre</li>
+      <li><%= f.check_box :give_rights %> Give rights</li>
+    </ul>
+  </div>
+  <div class="actions">
+    <%= f.submit class: "btn btn-info" %>
+  </div>
+<% end %>

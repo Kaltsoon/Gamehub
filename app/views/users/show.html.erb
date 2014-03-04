@@ -1,0 +1,42 @@
+<% if(not notice.nil?) %>
+	<div class="alert alert-info">
+		<%= notice %>
+	</div>
+<% end %>
+<div class="page-header">
+  <h1><%= @user %> <small>user</small></h1>
+</div>
+<%= link_to raw("<i class='fa fa-pencil'></i> Edit"), edit_user_path(@user), class: "btn btn-primary" if is_current_user?(@user) %> 
+<%= link_to raw("<i class='fa fa-key'></i> Change password"), "#{user_path(@user)}/change_password", class: "btn btn-primary" if is_current_user?(@user) %> 
+<%= link_to raw("<i class='fa fa-times'></i> Remove my user"), user_path(@user),  method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" if is_current_user?(@user) %> 
+<h3>About <%= @user %></h3>
+<div class="row">
+	<div class="col-md-4">
+		<%= image_tag @user.avatar.url(:medium), class: "img-responsive media-object img-rounded" %>
+	</div>
+	<div class="col-md-5">
+		<blockquote>
+			<% if @user.description.nil? %>
+				No description yet
+			<% end %>
+			<%= @user.description %>
+		</blockquote>
+	</div>
+	<div class="col-md-3">
+		<div class="well well-sm">
+			<ul class="list-unstyled" style="margin-bottom: 0px">
+				<li>
+					<strong>Member since:</strong> <%= @user.created_at.to_formatted_s(:long) %>
+				</li>
+				<li>
+					<strong>Number of reviews:</strong> <span class="badge"><%= @user.reviews.count %></span>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<h3>Favorite games</h3>
+<%= render "favorite_games_list", games: @user.favorite_games %>
+<h3>Reviews</h3>
+<%= render "reviews_list", reviews: @user.reviews, user: @user %>
+

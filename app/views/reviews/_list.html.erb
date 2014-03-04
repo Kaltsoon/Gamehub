@@ -1,0 +1,16 @@
+<ul class="media-list">
+  <% reviews.each do |review| %>
+  <li class="media">
+    <a class="pull-left" href="#">
+      <%= image_tag review.user.avatar.url(:thumb), class: "media-object img-rounded" %>
+    </a>
+    <div class="media-body">
+      <h4><label class="label label-info"><%= review.score %></label> <%= link_to review.user, user_path(review.user) %> <small><%= review.created_at.to_formatted_s(:long) %></small></h4>
+	    <p>
+	    	<%= review.synopsis %>
+	    </p>
+	   	on <%= link_to review.game, game_path(review.game) %>
+    </div>
+  </li>
+  <% end %>
+</ul>
