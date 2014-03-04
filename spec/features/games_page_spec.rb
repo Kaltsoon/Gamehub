@@ -23,7 +23,6 @@ describe "Games page" do
   	g1 = FactoryGirl.create(:game, name: "peli1")
   	g2 = FactoryGirl.create(:game, name: "peli2")
   	visit games_path
-  	expect(page).to have_content "Games"
   	expect(page).to have_content "2 games"
   	expect(page).to have_content "peli1"
   	expect(page).to have_content "peli2"
@@ -38,6 +37,16 @@ describe "Games page" do
   	expect(page).to have_content "January 1, 1990"
   	expect(page).to have_content "peli4"
   	expect(page).to have_content "February 2, 2000"
+  end
+
+  it "should order games alphabetically", js:true do
+    g1 = FactoryGirl.create(:game, name: "peliA")
+    g3 = FactoryGirl.create(:game, name: "peliC")
+    g2 = FactoryGirl.create(:game, name: "peliB")
+    visit games_path
+    find('tbody').find('tr:nth-child(1)').should have_content("peliA")
+    find('tbody').find('tr:nth-child(2)').should have_content("peliB")
+    find('tbody').find('tr:nth-child(3)').should have_content("peliC")
   end
 
   after :each do

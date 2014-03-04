@@ -46,4 +46,10 @@ describe Review do
 		expect(review.game).to eq(game)
 	end
 
+	it "has correct vote sum" do
+		review = FactoryGirl.create(:review, user: user, game: game)
+		v1 = FactoryGirl.create(:vote, user: user, review: review)
+		expect(review.votes_sum).to eq(1)
+	end
+
 end

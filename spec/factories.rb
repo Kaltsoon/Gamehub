@@ -30,4 +30,8 @@ FactoryGirl.define do
 		edit_genre true
 		give_rights true
 	end
+
+	factory :vote do
+		value 1
+	end
 end

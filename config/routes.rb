@@ -17,6 +17,7 @@ Gamehub::Application.routes.draw do
   delete "signout", to: "sessions#destroy"
   get "users/:id/change_password", to: "users#edit_password"
   post "users/:id/change_password", to: "users#change_password"
+  post "vote_review", to: "votes#create"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

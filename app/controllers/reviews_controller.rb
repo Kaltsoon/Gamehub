@@ -70,7 +70,7 @@ class ReviewsController < ApplicationController
     end
 
     def confirm_review
-      if(current_user.nil?)
+      if(current_user.nil? or current_user!=User.find(params[:review][:user_id]))
         redirect_to signin_path
       end
       if(params[:review].has_key?(:game_id))

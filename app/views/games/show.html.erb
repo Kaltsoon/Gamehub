@@ -42,7 +42,7 @@
 <p>
 	<a href="#give_a_review" class="btn btn-primary"><i class="fa fa-pencil"></i> Give a review for this game</a>
 </p>
-<%= render "reviews", reviews: @game.reviews.order("created_at DESC") %>
+<%= render "reviews", reviews: @reviews %>
 <a name="give_a_review"></a>
 <h3>Give a review for this game</h3>
 <% if(!current_user.nil? and !@game.users.include?(current_user)) %>

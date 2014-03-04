@@ -15,6 +15,7 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
+    @reviews = @game.reviews.sort_by{|r| -r.votes_sum}
   end
 
   # GET /games/new

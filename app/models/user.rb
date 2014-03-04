@@ -21,11 +21,18 @@ class User < ActiveRecord::Base
 	end
 
 	def synopsis
+		if(description.nil?)
+			return ""
+		end
 		return description.length<=100 ? description : "#{description[0..100]}..."
 	end
 
 	def is_current_user?
 		return current_user.nil? ? false : (current_user.id==id)
+	end
+
+	def has_voted_for_review?(review)
+		return (Vote.where(user_id: id, review_id: review.id).count!=0)
 	end
 
 	def self.most_active

@@ -5,10 +5,39 @@
       <%= image_tag review.user.avatar.url(:thumb), class: "media-object img-rounded" %>
     </a>
     <div class="media-body">
+      <a name="review_<%= review.id %>"></a>
       <h4><label class="label label-info"><%= review.score %></label> <%= link_to review.user, user_path(review.user) %> <small><%= review.created_at.to_formatted_s(:long) %></small></h4>
 	    <p>
 	    	<%= review.content %>
 	    </p>
+      <ul class="list-inline">
+        <li>
+          <strong>Votes:</strong>
+        </li>
+        <li style="margin-bottom: 1px">
+          <%= raw("<span class='label label-success'>+#{review.votes_sum}</span>") if review.votes_sum>0 %>
+          <%= raw("<span class='label label-primary'>#{review.votes_sum}</span>") if review.votes_sum==0 %>
+          <%= raw("<span class='label label-danger'>#{review.votes_sum}</span>") if review.votes_sum<0 %>
+        </li>
+        <% if(!current_user.nil? and !current_user.has_voted_for_review?(review)) %>
+          <li>
+            <%= form_tag vote_review_path, method: :post do %>
+              <%= hidden_field_tag "vote[user_id]", current_user.id %>
+              <%= hidden_field_tag "vote[review_id]", review.id %>
+              <%= hidden_field_tag "vote[value]", 1 %>
+              <%= button_tag raw("<i class='fa fa-thumbs-up'></i> Upvote"), class: "btn btn-sm btn-success" %>
+            <% end %>
+          </li>
+          <li>
+            <%= form_tag vote_review_path, method: :post do %>
+              <%= hidden_field_tag "vote[user_id]", current_user.id %>
+              <%= hidden_field_tag "vote[review_id]", review.id %>
+              <%= hidden_field_tag "vote[value]", -1 %>
+              <%= button_tag raw("<i class='fa fa-thumbs-down'></i> Downvote"), class: "btn btn-sm btn-danger" %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
     </div>
   </li>
   <% end %>
