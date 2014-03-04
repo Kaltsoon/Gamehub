@@ -1,3 +1,4 @@
 == Game Hub
 
-* Sovellus löytyy herokusta osoitteesta http://arcane-taiga-1936.herokuapp.com/
+* Sovellus löytyy herokusta osoitteesta http://arcane-taiga-1936.herokuapp.com
+* Sovelluksen wiki löytyy osoitteesta https://github.com/Kaltsoon/gamehub/wiki/Game-Hub-wiki
