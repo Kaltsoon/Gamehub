@@ -7,6 +7,12 @@ describe "Genres page" do
   end
   
   before :each do
+    user = FactoryGirl.create(:user)
+    admin = FactoryGirl.create(:admin, user: user)
+    visit signin_path
+    fill_in("username", with: "kalle")
+    fill_in("password", with: "kalle123")
+    click_button("Sign in")
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.start
   end
@@ -34,6 +40,22 @@ describe "Genres page" do
     find('tbody').find('tr:nth-child(1)').should have_content("genreA")
     find('tbody').find('tr:nth-child(2)').should have_content("genreB")
     find('tbody').find('tr:nth-child(3)').should have_content("genreC")
+  end
+
+  it "should have posibility to add a genre" do
+    visit new_genre_path
+    fill_in("genre[name]", with: "genre")
+    expect(Genre.count).to eq(0)
+    click_button("Create Genre")
+    expect(Genre.count).to eq(1)
+  end
+
+  it "should have posibility to remove a genre" do
+    genre = FactoryGirl.create(:genre)
+    visit genre_path(genre)
+    expect(Genre.count).to eq(1)
+    click_link("Remove")
+    expect(Genre.count).to eq(0)
   end
 
   after :each do

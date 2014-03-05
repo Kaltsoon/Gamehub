@@ -1,4 +1,4 @@
-<ul class="media-list">
+<ul class="media-list reviews-list">
   <% reviews.each do |review| %>
   <li class="media">
     <div class="media-body">
@@ -6,7 +6,7 @@
 	    <p>
 	    	<%= review.content %>
 	    </p>
-      <%= link_to raw("<i class='fa fa-times'></i> Remove "), review_path(review),  method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" if is_current_user?(user) %> 
+      <%= link_to raw("<i class='fa fa-times'></i> Remove review"), review_path(review),  method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" if is_current_user?(user) %> 
     </div>
   </li>
   <% end %>

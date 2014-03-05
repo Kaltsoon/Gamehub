@@ -33,12 +33,12 @@ class GamesController < ApplicationController
   # POST /games.json
   def create
     @game = Game.new(game_params)
-
     respond_to do |format|
       if @game.save
         format.html { redirect_to @game, notice: 'Game was successfully created.' }
         format.json { render action: 'show', status: :created, location: @game }
       else
+        @genres = Genre.all
         format.html { render action: 'new' }
         format.json { render json: @game.errors, status: :unprocessable_entity }
       end
