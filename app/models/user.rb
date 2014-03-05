@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 	validates :username, length: { in: 3..15 }
 	validates :description, length: { maximum: 1000 }
 	
-	scope :latest, User.all.order("created_at").limit(5)
+	scope :latest, order: "created_at", limit: 3
 
 	def favorite_games
 		return reviews.sort_by{|r| -r.score}.take(5).map{|r| r.game}
@@ -36,6 +36,6 @@ class User < ActiveRecord::Base
 	end
 
 	def self.most_active
-		return User.all.sort_by{|u| -u.reviews.count}.take(5)
+		return User.all.sort_by{|u| -u.reviews.count}.take(3)
 	end
 end
