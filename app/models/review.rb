@@ -8,9 +8,9 @@ class Review < ActiveRecord::Base
 	validates :user_id, uniqueness: { scope: :game_id }, presence: true
 	validates :game_id, presence: true
 
-	scope :latest, Review.all.order("created_at").limit(3)
-	scope :lowest_score, Review.all.order("score").limit(3)
-	scope :highest_score, Review.all.order("score DESC").limit(3)
+	scope :latest, order: "created_at", limit: 3
+	scope :lowest_score, order: "score", limit: 3
+	scope :highest_score, order: "score DESC", limit: 3
 
 	def synopsis
 		return content.length<=100 ? content : "#{content[0..100]}..."
