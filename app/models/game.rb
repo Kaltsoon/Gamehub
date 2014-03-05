@@ -11,7 +11,7 @@ class Game < ActiveRecord::Base
 	validates :description, presence: true, length: { minimum: 10 }
 	validates :published, presence: true
 
-	scope :latest, order: "published", limit: 3
+	scope :latest, order: "published DESC", limit: 3
 
 	def to_s
 		return name

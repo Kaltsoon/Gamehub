@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 	validates :username, length: { in: 3..15 }
 	validates :description, length: { maximum: 1000 }
 	
-	scope :latest, order: "created_at", limit: 3
+	scope :latest, order: "created_at DESC", limit: 3
 
 	def favorite_games
 		return reviews.sort_by{|r| -r.score}.take(5).map{|r| r.game}

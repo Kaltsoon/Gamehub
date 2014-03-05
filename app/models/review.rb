@@ -8,7 +8,7 @@ class Review < ActiveRecord::Base
 	validates :user_id, uniqueness: { scope: :game_id }, presence: true
 	validates :game_id, presence: true
 
-	scope :latest, order: "created_at", limit: 3
+	scope :latest, order: "created_at DESC", limit: 3
 	scope :lowest_score, order: "score", limit: 3
 	scope :highest_score, order: "score DESC", limit: 3
 
