@@ -18,6 +18,8 @@ Gamehub::Application.routes.draw do
   get "users/:id/change_password", to: "users#edit_password"
   post "users/:id/change_password", to: "users#change_password"
   post "vote_review", to: "votes#create"
+  get "game_search", to: "game_searchs#index"
+  post "search", to: "game_searchs#search"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -14,7 +14,7 @@
         <li>
           <strong>Votes:</strong>
         </li>
-        <li style="margin-bottom: 1px">
+        <li>
           <%= raw("<span class='label label-success'>+#{review.votes_sum}</span>") if review.votes_sum>0 %>
           <%= raw("<span class='label label-primary'>#{review.votes_sum}</span>") if review.votes_sum==0 %>
           <%= raw("<span class='label label-danger'>#{review.votes_sum}</span>") if review.votes_sum<0 %>

@@ -7,6 +7,8 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 
 gem "paperclip", "~> 4.1"
 
+gem 'httparty'
+
 # Use sqlite3 as the database for Active Record
 
 # Use SCSS for stylesheets
