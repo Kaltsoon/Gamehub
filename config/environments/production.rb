@@ -3,7 +3,7 @@ Gamehub::Application.configure do
 
   # Code is not reloaded between requests.
   config.cache_classes = true
-  config.assets.js_compressor = Sprockets::LazyCompressor.new { Uglifier.new(:mangle => false) }
+
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both thread web servers
   # and those relying on copy on write to perform better.
@@ -23,7 +23,7 @@ Gamehub::Application.configure do
   config.serve_static_assets = false
 
   # Compress JavaScripts and CSS.
-  #config.assets.js_compressor = :uglifier
+  config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
@@ -77,4 +77,6 @@ Gamehub::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  config.assets.js_compressor = Sprockets::LazyCompressor.new { Uglifier.new(:mangle => false) }
 end
