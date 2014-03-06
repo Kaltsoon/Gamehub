@@ -6,9 +6,8 @@
   <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   <%= csrf_meta_tags %>
-  <%= javascript_include_tag "application" %>
-  <%= javascript_include_tag "/app/assets/javascript/angular.js" %>
-  <%= javascript_include_tag "/app/assets/javascript/gamelist.js" %>
+
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
