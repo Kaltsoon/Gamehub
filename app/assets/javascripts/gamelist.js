@@ -1,10 +1,10 @@
-function GamesController($scope, $http){
+var app = angular.module("app",[]);
+app.controller("GamesController", ["$scope", "$http", function($scope, $http){
 	$http.get("games.json").success(function(data, status, headers, config){
 		$scope.games = data;
 	});
 	$scope.order = "name";
 	$scope.click = function (order){
-            $scope.order = order;
-            console.log(order);
-        }
-}
+        $scope.order = order;
+    }
+}])
