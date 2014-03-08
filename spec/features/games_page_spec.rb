@@ -71,6 +71,15 @@ describe "Games page" do
     expect(Game.count).to eq(0)
   end
 
+  it "should have posibility to edit a game" do
+    game = FactoryGirl.create(:game)
+    visit edit_game_path(game)
+    fill_in("game[name]", with: "uusi nimi")
+    click_button("Update Game")
+    visit game_path(game)
+    expect(page).to have_content "uusi nimi"
+  end
+
   after :each do
     DatabaseCleaner.clean
   end

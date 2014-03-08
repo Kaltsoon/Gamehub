@@ -58,6 +58,15 @@ describe "Genres page" do
     expect(Genre.count).to eq(0)
   end
 
+  it "should have posibility to edit genre" do
+    genre = FactoryGirl.create(:genre)
+    visit edit_genre_path(genre)
+    fill_in("genre[name]", with: "uusi nimi")
+    click_button("Update Genre")
+    visit genre_path(genre)
+    expect(page).to have_content "uusi nimi"
+  end
+
   after :each do
     DatabaseCleaner.clean
   end
