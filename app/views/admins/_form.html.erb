@@ -1,7 +1,7 @@
 <%= form_for(@admin) do |f| %>
   <% if @admin.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@admin.errors.count, "error") %> prohibited this admin from being saved:</h2>
+    <div class="alert alert-danger">
+      <strong><%= pluralize(@admin.errors.count, "error") %> prohibited this admin from being saved:</strong>
 
       <ul>
       <% @admin.errors.full_messages.each do |msg| %>
@@ -12,8 +12,9 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :user_id %><br>
-    <%= select_tag "admin[user_id]", options_from_collection_for_select(@users, "id", "to_s") %>
+    <%= f.label :user_id %>
+    <br/>
+    <%= select_tag "admin[user_id]", options_from_collection_for_select(@users, "id", "to_s", (@admin.user.nil? ? nil : @admin.user.id)) %>
   </div>
   <div class="form-group">
     <%= f.label "Rights" %>

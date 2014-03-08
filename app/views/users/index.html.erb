@@ -13,20 +13,25 @@
   </div>
 </div>
 <h3>All <small><%= pluralize(@users.count,"user") %></small></h3>
-<table ng-app="UserApp" ng-controller="UsersController" class="table table-striped table-bordered">
-  <thead>
-    <tr>
-      <th><a ng-click="click('username')"><i class="fa fa-sort"></i> Username</a></th>
-      <th><a ng-click="click('created_at')"><i class="fa fa-sort"></i> Member since</a></th>
-      <th><a ng-click="click('reviews')"><i class="fa fa-sort"></i> Number of reviews</a></th>
-    </tr>
-  </thead>
+<div ng-app="UserApp" ng-controller="UsersController">
+  <p>
+    <input ng-model="searchText" class="form-control" placeholder="Search for users">
+  </p>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th><a ng-click="click('username')"><i class="fa fa-sort"></i> Username</a></th>
+        <th><a ng-click="click('created_at')"><i class="fa fa-sort"></i> Member since</a></th>
+        <th><a ng-click="click('reviews')"><i class="fa fa-sort"></i> Number of reviews</a></th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <tr ng-repeat="user in users | orderBy:order">
-      <td><a href="users/{{user.id}}">{{user.username}}</a></td>
-      <td>{{user.created_at | date:'MMMM d, y'}}</td>
-      <td><span class="badge">{{user.reviews.length}}</span></td>
-    </tr>
-  </tbody>
-</table>
+    <tbody>
+      <tr ng-repeat="user in users | orderBy:order | filter:searchText">
+        <td><a href="users/{{user.id}}">{{user.username}}</a></td>
+        <td>{{user.created_at | date:'MMMM d, y'}}</td>
+        <td><span class="badge">{{user.reviews.length}}</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -38,5 +38,5 @@
 <h3>Favorite games</h3>
 <%= render "favorite_games_list", games: @user.favorite_games %>
 <h3>Reviews</h3>
-<%= render "reviews_list", reviews: @user.reviews, user: @user %>
+<%= render "reviews_list", reviews: @user.reviews.sort_by{|r| -r.votes_sum}, user: @user %>
 

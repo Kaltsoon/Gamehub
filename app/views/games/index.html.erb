@@ -22,22 +22,27 @@
   </div>
 </div>
 <h3>All <small><%= pluralize(@games.count,"game") %></small></h3>
-<table ng-app="GameApp" ng-controller="GamesController" class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th><a ng-click="click('name')"><i class="fa fa-sort"></i> Name</a></th>
-      <th><a ng-click="click('published')"><i class="fa fa-sort"></i> Release date</th>
-      <th><a ng-click="click('average_score')"><i class="fa fa-sort"></i> Score</a></th>
-      <th><a ng-click="click('reviews')"><i class="fa fa-sort"></i> Number of reviews</a></th>
-    </tr>
-  </thead>
+<div ng-app="GameApp" ng-controller="GamesController">
+  <p>
+    <input ng-model="searchText" class="form-control" placeholder="Search for games">
+  </p>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th><a ng-click="click('name')"><i class="fa fa-sort"></i> Name</a></th>
+        <th><a ng-click="click('published')"><i class="fa fa-sort"></i> Release date</th>
+        <th><a ng-click="click('average_score')"><i class="fa fa-sort"></i> Score</a></th>
+        <th><a ng-click="click('reviews')"><i class="fa fa-sort"></i> Number of reviews</a></th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <tr ng-repeat="game in games | orderBy:order">
-      <td><a href="games/{{game.id}}">{{game.name}}</a></td>
-      <td>{{game.published | date:'MMMM d, y'}}</td>
-      <td><span class="label label-info">{{game.average_score}}</span></td>
-      <td><span class="badge">{{game.reviews.length}}</span></td>
-    </tr>
-  </tbody>
-</table>
+    <tbody>
+      <tr ng-repeat="game in games | orderBy:order | filter:searchText">
+        <td><a href="games/{{game.id}}">{{game.name}}</a></td>
+        <td>{{game.published | date:'MMMM d, y'}}</td>
+        <td><span class="label label-info">{{game.average_score}}</span></td>
+        <td><span class="badge">{{game.reviews.length}}</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

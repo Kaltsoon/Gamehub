@@ -15,42 +15,35 @@ class AdminsController < ApplicationController
 
   # GET /admins/new
   def new
-    @users = User.all - Admin.all.map{|a| a.user}
+    @users = User.all
     @admin = Admin.new
   end
 
   # GET /admins/1/edit
   def edit
-    @users = User.all - Admin.all.map{|a| a.user}
+    @users = User.all
   end
 
   # POST /admins
   # POST /admins.json
   def create
     @admin = Admin.new(admin_params)
-
-    respond_to do |format|
-      if @admin.save
-        format.html { redirect_to @admin, notice: 'Admin was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @admin }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @admin.errors, status: :unprocessable_entity }
-      end
+    if @admin.save
+      redirect_to admins_path, notice: 'Admin was successfully created.'
+    else
+      @users = User.all
+      render :new
     end
   end
 
   # PATCH/PUT /admins/1
   # PATCH/PUT /admins/1.json
   def update
-    respond_to do |format|
-      if @admin.update(admin_params)
-        format.html { redirect_to @admin, notice: 'Admin was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @admin.errors, status: :unprocessable_entity }
-      end
+    if @admin.update(admin_params)
+      redirect_to admins_path, notice: 'Admin was successfully updated.'
+    else
+      @users = User.all
+      render :edit
     end
   end
 
