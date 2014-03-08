@@ -17,7 +17,7 @@
   </div>
 </div>
 <h3>All <small><%= pluralize(@reviews.count,"review") %></small></h3>
-<table ng-app="app" ng-controller="ReviewsController" class="table table-striped table-bordered">
+<table ng-app="ReviewApp" ng-controller="ReviewsController" class="table table-striped table-bordered">
   <thead>
     <tr>
       <th><a ng-click="click('game.name')"><i class="fa fa-sort"></i> Game</a></th>

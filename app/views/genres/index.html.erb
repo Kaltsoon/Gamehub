@@ -3,7 +3,7 @@
 </div>
 <%= link_to raw("<i class='fa fa-plus'></i> New Genre"), new_genre_path, class: "btn btn-success" if is_user_allowed_to?("add_genre") %>
 <h3>All <small><%= pluralize(@genres.count,"genre") %></small></h3>
-<table ng-app="app" ng-controller="GenresController" class="table table-striped table-bordered">
+<table ng-app="GenreApp" ng-controller="GenresController" class="table table-striped table-bordered">
   <thead>
     <tr>
       <th><a ng-click="click('name')"><i class="fa fa-sort"></i> Name</a></th>

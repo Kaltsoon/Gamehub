@@ -22,7 +22,7 @@
   </div>
 </div>
 <h3>All <small><%= pluralize(@games.count,"game") %></small></h3>
-<table ng-app="app" ng-controller="GamesController" class="table table-bordered table-striped">
+<table ng-app="GameApp" ng-controller="GamesController" class="table table-bordered table-striped">
   <thead>
     <tr>
       <th><a ng-click="click('name')"><i class="fa fa-sort"></i> Name</a></th>

@@ -13,7 +13,7 @@
   </div>
 </div>
 <h3>All <small><%= pluralize(@users.count,"user") %></small></h3>
-<table ng-app="app" ng-controller="UsersController" class="table table-striped table-bordered">
+<table ng-app="UserApp" ng-controller="UsersController" class="table table-striped table-bordered">
   <thead>
     <tr>
       <th><a ng-click="click('username')"><i class="fa fa-sort"></i> Username</a></th>
