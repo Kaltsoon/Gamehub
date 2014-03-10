@@ -1506,14 +1506,6 @@
         1,
         null
       ],
-      "/Users/kalle/Desktop/gamehub/app/models/genre_game.rb": [
-        1,
-        1,
-        1,
-        null,
-        1,
-        null
-      ],
       "/Users/kalle/Desktop/gamehub/app/controllers/sessions_controller.rb": [
         1,
         1,
@@ -1534,8 +1526,16 @@
         1,
         null,
         null
+      ],
+      "/Users/kalle/Desktop/gamehub/app/models/genre_game.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        null
       ]
     },
-    "timestamp": 1394306332
+    "timestamp": 1394443920
   }
 }
